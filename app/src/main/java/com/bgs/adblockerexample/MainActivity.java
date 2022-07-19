@@ -17,7 +17,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         webView = findViewById(R.id.webview_view);
-        webView.setWebViewClient(new MyCWebview());
+        webView.setWebViewClient(new MyCWebview() {
+            @Override
+            public void pageFinished() {
+
+            }
+        });
         final WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setSupportZoom(true);

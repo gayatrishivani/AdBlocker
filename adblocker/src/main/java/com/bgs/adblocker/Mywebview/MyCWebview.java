@@ -1,17 +1,20 @@
 package com.bgs.adblocker.Mywebview;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
 
+import com.bgs.adblocker.WebViewAdBlock;
+
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class MyCWebview extends WebViewClient {
+public abstract class MyCWebview extends WebViewClient {
 
 
     public static String myUrl = "";
@@ -31,11 +34,13 @@ public class MyCWebview extends WebViewClient {
         super.onPageStarted(view, url, favicon);
     }
 
+    public abstract void pageFinished();
+
     @Override
     public void onPageFinished(WebView view, String url) {
 
         view.loadUrl("javascript:window.HtmlViewer.showHTML('<head>' + document.getElementsByTagName('html')[0].innerHTML + '</head>');");
-
+        pageFinished();
         super.onPageFinished(view, url);
     }
 

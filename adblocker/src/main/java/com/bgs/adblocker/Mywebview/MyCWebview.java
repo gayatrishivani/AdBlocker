@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public abstract class MyCWebview extends WebViewClient {
+public class MyCWebview extends WebViewClient {
 
 
     public static String myUrl = "";
@@ -34,13 +34,11 @@ public abstract class MyCWebview extends WebViewClient {
         super.onPageStarted(view, url, favicon);
     }
 
-    public abstract void pageFinished();
 
     @Override
     public void onPageFinished(WebView view, String url) {
 
-        view.loadUrl("javascript:window.HtmlViewer.showHTML('<head>' + document.getElementsByTagName('html')[0].innerHTML + '</head>');");
-        pageFinished();
+
         super.onPageFinished(view, url);
     }
 
